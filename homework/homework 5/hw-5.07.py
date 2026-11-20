@@ -4,7 +4,6 @@ import numpy as np
 
 print("hw-5.07")
 
-
 def measure(fn, x, repeat=3):
     best = float("inf")
     result = None
@@ -15,7 +14,6 @@ def measure(fn, x, repeat=3):
         best = min(best, t1 - t0)
     return result, best
 
-
 def loop_max(arr):
     max_val = arr[0]
     max_idx = 0
@@ -25,10 +23,8 @@ def loop_max(arr):
             max_idx = i
     return max_val, max_idx
 
-
 def numpy_max(arr):
     return arr.max(), arr.argmax()
-
 
 rng = np.random.default_rng(42)
 a = rng.normal(size=10**6)
@@ -41,6 +37,3 @@ same_val = np.isclose(r_loop[0], r_numpy[0])
 same_idx = r_loop[1] == r_numpy[1]
 print(f"максимум совпадает: {same_val}")
 print(f"индекс совпадает: {same_idx}")
-print("Вывод: a.max() и a.argmax() короче цикла, который запоминает значение и индекс.")
-print("Индекс должен совпасть точно: здесь нет сложения, только сравнения.")
-print("NumPy быстрее, потому что проходит массив не в Python-цикле.")

@@ -4,7 +4,6 @@ import numpy as np
 
 print("hw-5.04")
 
-
 def measure(fn, arr, repeat=3):
     best = float("inf")
     result = None
@@ -14,7 +13,6 @@ def measure(fn, arr, repeat=3):
         t1 = time.perf_counter()
         best = min(best, t1 - t0)
     return result, best
-
 
 def loop_clip(arr):
     result = [0.0] * arr.shape[0]
@@ -28,10 +26,8 @@ def loop_clip(arr):
             result[i] = x
     return result
 
-
 def numpy_clip(arr):
     return np.clip(arr, 0, 1)
-
 
 rng = np.random.default_rng(42)
 a = rng.normal(size=10**6)
@@ -43,6 +39,3 @@ print(f"NumPy:  {t_numpy*1000:10.2f} мс")
 print(f"ускорение: {t_loop / t_numpy:.1f}×")
 print(f"результаты совпадают: {np.allclose(r_loop, r_numpy)}")
 print(f"элементов изменено: {changed}")
-print("Вывод: np.clip короче, чем цикл с if и elif, и делает то же самое.")
-print("Число изменённых элементов — это сколько значений было вне отрезка от 0 до 1.")
-print("На миллионе чисел разница во времени уже хорошо видна.")

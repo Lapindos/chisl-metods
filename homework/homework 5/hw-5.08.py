@@ -5,7 +5,6 @@ import numpy as np
 
 print("hw-5.08")
 
-
 def measure(fn, x, repeat=3):
     best = float("inf")
     result = None
@@ -16,7 +15,6 @@ def measure(fn, x, repeat=3):
         best = min(best, t1 - t0)
     return result, best
 
-
 def loop_filter(arr):
     result = []
     for x in arr:
@@ -24,10 +22,8 @@ def loop_filter(arr):
             result.append(x)
     return result
 
-
 def numpy_filter(arr):
     return arr[arr > 0]
-
 
 rng = np.random.default_rng(42)
 a = rng.normal(size=10**6)
@@ -50,6 +46,3 @@ print(f"ускорение: {t_loop / t_numpy:.1f}×")
 print(f"результаты совпадают: {np.allclose(r_loop, r_numpy)}")
 print(f"пик памяти цикла:  {peak_loop / 1024 / 1024:.2f} МБ")
 print(f"пик памяти NumPy:  {peak_numpy / 1024 / 1024:.2f} МБ")
-print("Вывод: a[a > 0] короче, чем цикл, который собирает список через append.")
-print("Список Python занимает больше памяти: каждое число — отдельный объект.")
-print("Массив NumPy хранит числа подряд, поэтому и быстрее, и компактнее.")

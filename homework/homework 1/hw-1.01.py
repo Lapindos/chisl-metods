@@ -2,10 +2,8 @@ import math
 
 print("hw-1.01")
 
-
 def cond_number(x, f_value, df_value):
     return abs(x * df_value / f_value)
-
 
 x1 = 1e-8
 c1 = cond_number(x1, math.sqrt(x1), 1 / (2 * math.sqrt(x1)))
@@ -32,6 +30,3 @@ for name, x, c in zip(names, points, values):
 
 order = sorted(zip(values, names))
 print("По возрастанию cond:", ", ".join(name for _, name in order))
-print("Вывод: самая опасная задача — f(x) = x - 1 рядом с единицей.")
-print("Там ответ почти ноль, а cond около миллиона: маленькая ошибка во входе сильно портит результат.")
-print("sin в точке pi/2 и корень обусловлены хорошо: cond у них маленький.")

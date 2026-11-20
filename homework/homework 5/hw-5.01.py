@@ -4,7 +4,6 @@ import numpy as np
 
 print("hw-5.01")
 
-
 def measure(fn, arr, repeat=3):
     best = float("inf")
     result = None
@@ -15,17 +14,14 @@ def measure(fn, arr, repeat=3):
         best = min(best, t1 - t0)
     return result, best
 
-
 def loop_sum(arr):
     total = 0.0
     for x in arr:
         total += x
     return total
 
-
 def numpy_sum(arr):
     return arr.sum()
-
 
 sizes = [10**5, 10**6, 10**7]
 speeds = []
@@ -49,18 +45,3 @@ for n, s in zip(sizes, speeds):
     print(f"{n} → {s:.1f}×", end="  ")
 print()
 
-first_big = None
-for n, s in zip(sizes, speeds):
-    if s > 10 and first_big is None:
-        first_big = n
-
-print("Вывод: NumPy короче — одна строка вместо цикла.")
-if first_big is None:
-    print("На этих размерах ускорение ещё не стало больше 10 раз.")
-else:
-    print(f"Разница становится заметной (больше 10 раз) уже при n = {first_big}.")
-print(
-    f"Дальше ускорение такое: {speeds[0]:.0f}×, {speeds[1]:.0f}×, {speeds[2]:.0f}×. "
-    "Оно не обязано расти с каждым n, но остаётся большим."
-)
-print("Причина в том, что цикл делает каждый шаг в Python, а sum работает в скомпилированном коде.")

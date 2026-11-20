@@ -8,7 +8,6 @@ print("hw-1.13")
 print("Python", sys.version.split()[0])
 print("numpy", np.__version__)
 
-
 def make_data(seed):
     random.seed(seed)
     py_data = [random.random() for _ in range(10**5)]
@@ -16,10 +15,8 @@ def make_data(seed):
     np_data = rng.random(10**5)
     return py_data, np_data
 
-
 def three_sums(values):
     return sum(values), math.fsum(values), float(np.sum(values))
-
 
 def report(seed):
     py_data, np_data = make_data(seed)
@@ -32,13 +29,9 @@ def report(seed):
     print("  |sum - fsum| для rng:   ", abs(np_sums[0] - np_sums[1]))
     return py_sums, np_sums
 
-
 first = report(42)
 second = report(42)
 third = report(43)
 
 print("два запуска с seed=42 совпали:", first == second)
 print("seed=43 дал другие суммы:", first != third)
-print("Вывод: при одном seed и тех же версиях оба запуска дали одни и те же числа.")
-print("Разница между sum и fsum не скачет случайно: это систематическая ошибка округления, она есть и при seed=43.")
-print("Без записанного seed и версии numpy чужой человек не повторит этот эксперимент.")

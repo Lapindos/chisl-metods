@@ -4,7 +4,6 @@ import numpy as np
 
 print("hw-1.14")
 
-
 def show(name, values):
     print(name)
     try:
@@ -20,7 +19,6 @@ def show(name, values):
     except Exception as e:
         print("  np.sum:", type(e).__name__, e)
 
-
 base = [1.0, 2.0, 3.0]
 show("обычные числа", base)
 show("плюс очень большое 1e300", base + [1e300])
@@ -31,7 +29,3 @@ show("плюс inf", base + [float("inf")])
 show("плюс nan", base + [float("nan")])
 show("inf и -inf вместе", [float("inf"), float("-inf")])
 show("всё сразу", [1e300, 1e-300, 0.0, 1e-320, float("inf"), float("nan")])
-
-print("Вывод: nan сразу портит sum, fsum и np.sum: ответ становится nan.")
-print("Один inf превращается в inf. А inf вместе с -inf у sum даёт nan, у fsum — ошибку ValueError.")
-print("Очень маленькое и денормализованное число рядом с обычными почти не видны в сумме. Их нельзя молча выкидывать, если они сами и есть данные: перед суммой надо решать, что делать с nan и inf.")

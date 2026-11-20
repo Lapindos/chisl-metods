@@ -10,24 +10,19 @@ print("hw-1.06")
 
 mp.mp.dps = 50
 
-
 def bad(x):
     return (1 - math.cos(x)) / (x * x)
-
 
 def good(x):
     s = math.sin(x / 2)
     return 2 * s * s / (x * x)
 
-
 def exact(x):
     x = mp.mpf(x)
     return (1 - mp.cos(x)) / (x * x)
 
-
 def rel_err(approx, exact_value):
     return abs(mp.mpf(approx) - exact_value) / abs(exact_value)
-
 
 xs = [1e-2, 1e-4, 1e-6, 1e-8, 1e-10]
 err_bad = []
@@ -62,6 +57,3 @@ if crossed is None:
     print("На этих x ошибка плохого способа ещё не превысила 1%.")
 else:
     print(f"Ошибка плохого способа превышает 1% начиная с x = {crossed:.0e}.")
-print("Вывод: прямая формула вычитает близкие числа 1 и cos(x), когда x маленький.")
-print("Тождество через sin(x/2) этого вычитания не делает, ошибка остаётся крошечной.")
-print("Правило: если в формуле есть 1 - cos(x) или похожее сокращение при малом x, ищем тождество.")

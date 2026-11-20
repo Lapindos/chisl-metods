@@ -7,32 +7,26 @@ print("hw-1.10")
 
 mp.mp.dps = 50
 
-
 def exact(x):
     x = mp.mpf(x)
     return (1 - mp.cos(x)) / (x * x)
-
 
 def rel_from_exact(approx, x):
     ref = exact(x)
     return float(abs(mp.mpf(approx) - ref) / abs(ref))
 
-
 def bad64(x):
     return (1 - math.cos(x)) / (x * x)
-
 
 def good64(x):
     s = math.sin(x / 2)
     return 2 * s * s / (x * x)
-
 
 def bad32(x):
     x = np.float32(x)
     one = np.float32(1)
     value = (one - np.cos(x)) / (x * x)
     return float(value)
-
 
 print("Опыт (а). Плохой алгоритм, меняем x.")
 err_a = []
@@ -62,7 +56,3 @@ err_good = rel_from_exact(good64(x), x)
 print(f"  плохой ошибка={err_bad:.6e}")
 print(f"  хороший ошибка={err_good:.6e}")
 print(f"  смена алгоритма меняет ошибку на {math.log10(err_bad / err_good):.1f} порядков")
-
-print("Вывод: в опыте (а) доминирует сокращение 1 - cos(x), ошибка растёт, когда x уменьшается.")
-print("В опыте (б) доминирует машинная точность: float32 хранит меньше цифр, чем float64.")
-print("В опыте (в) доминирует устойчивость алгоритма: та же точка, но хорошая формула почти не ошибается.")

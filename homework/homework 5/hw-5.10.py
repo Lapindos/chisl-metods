@@ -4,7 +4,6 @@ import numpy as np
 
 print("hw-5.10")
 
-
 def measure(fn, x, repeat=3):
     best = float("inf")
     result = None
@@ -15,7 +14,6 @@ def measure(fn, x, repeat=3):
         best = min(best, t1 - t0)
     return result, best
 
-
 def loop_band(arr):
     result = []
     for x in arr:
@@ -23,10 +21,8 @@ def loop_band(arr):
             result.append(x)
     return result
 
-
 def numpy_band(arr):
     return arr[(arr > -1) & (arr < 1)]
-
 
 rng = np.random.default_rng(42)
 a = rng.normal(size=10**6)
@@ -41,7 +37,3 @@ try:
     print(a > -1 and a < 1)
 except ValueError:
     print("a > -1 and a < 1 не работает: and не умеет сравнивать целый массив")
-
-print("Вывод: в Python можно написать -1 < x < 1, это читается как в математике.")
-print("В NumPy так нельзя: нужно (a > -1) & (a < 1), и скобки обязательны.")
-print("Без скобок условие либо падает, либо считается не так. Оба рабочих способа отбирают один и тот же кусок.")

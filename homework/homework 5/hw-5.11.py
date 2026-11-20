@@ -7,7 +7,6 @@ print("hw-5.11")
 rng = np.random.default_rng(42)
 m = rng.normal(size=(200_000, 5))
 
-
 def loop_version(mat):
     n, k = mat.shape
     row_sums = [0.0] * n
@@ -28,13 +27,11 @@ def loop_version(mat):
                 col_arg[j] = i
     return row_sums, col_max, col_arg
 
-
 def numpy_version(mat):
     row_sums = mat.sum(axis=1)
     col_max = mat.max(axis=0)
     col_arg = mat.argmax(axis=0)
     return row_sums, col_max, col_arg
-
 
 def measure(fn, x, repeat=3):
     best = float("inf")
@@ -45,7 +42,6 @@ def measure(fn, x, repeat=3):
         t1 = time.perf_counter()
         best = min(best, t1 - t0)
     return result, best
-
 
 r_loop, t_loop = measure(loop_version, m)
 r_numpy, t_numpy = measure(numpy_version, m)
@@ -60,6 +56,3 @@ print("индексы совпадают:      ", np.array_equal(r_loop[2], r_nu
 print()
 print("NumPy, максимумы по столбцам:", np.round(r_numpy[1], 4))
 print("NumPy, их индексы:           ", r_numpy[2])
-print("Вывод: суммы строк могут чуть отличаться в хвосте, поэтому проверка через allclose.")
-print("Максимум и его индекс — это только сравнения, они совпадают точно.")
-print("Цикл медленнее: миллион сложений и ещё миллион сравнений идут в Python.")

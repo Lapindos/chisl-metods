@@ -4,7 +4,6 @@ import numpy as np
 
 print("hw-5.06")
 
-
 def measure(fn, x, repeat=3):
     best = float("inf")
     result = None
@@ -14,7 +13,6 @@ def measure(fn, x, repeat=3):
         t1 = time.perf_counter()
         best = min(best, t1 - t0)
     return result, best
-
 
 def loop_center(mat):
     n, k = mat.shape
@@ -32,10 +30,8 @@ def loop_center(mat):
         result.append(row)
     return result
 
-
 def numpy_center(mat):
     return mat - mat.mean(axis=0)
-
 
 rng = np.random.default_rng(42)
 m = rng.normal(size=(10**5, 10))
@@ -45,6 +41,3 @@ print(f"цикл:   {t_loop*1000:10.2f} мс")
 print(f"NumPy:  {t_numpy*1000:10.2f} мс")
 print(f"ускорение: {t_loop / t_numpy:.1f}×")
 print(f"результаты совпадают: {np.allclose(r_loop, r_numpy)}")
-print("Вывод: вычитание среднего по столбцам в NumPy делается вычитанием вектора из матрицы.")
-print("Это broadcasting: среднее формы (10,) само растягивается на все строки.")
-print("Цикл делает то же самое, но руками по каждому столбцу и каждой строке, поэтому он длиннее и медленнее.")
