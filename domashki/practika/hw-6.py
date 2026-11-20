@@ -35,7 +35,6 @@ for n in sizes:
         repeat=repeat,
     )
 
-    # Суммарное время number проверок -> микросекунды на одну проверку.
     best_list = min(times_list) / number * 1_000_000
     best_set = min(times_set) / number * 1_000_000
     time_list.append(best_list)
